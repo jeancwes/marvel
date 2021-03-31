@@ -3,11 +3,117 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
+  font-size: 14px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  width: calc( 100% - 30px );
+}
+
+
+
+a {
+  color: #3d91c9;
+  margin-top: 15px;
+  text-decoration: none;
+}
+
+.link,
+.link:active,
+.link:focus {
+  background: none;
+  border: none;
+  color: #3d91c9;
+  cursor: pointer;
+  margin-top: 15px;
+  outline: none;
+  text-decoration: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: 1px solid #cbcbcb;
+    width: 100%;
+}
+
+table caption {
+  color: #000;
+  font-style: italic;
+  font-family:  arial, sans-serif;
+  padding: 1em 0;
+  text-align: left;
+}
+
+table td,
+table th {
+    border-left: 1px solid #cbcbcb;
+    border-width: 0 0 0 1px;
+    font-size: inherit;
+    margin: 0;
+    overflow: visible;
+    padding: 0.5em 1em;
+}
+
+table thead {
+    background-color: #e0e0e0;
+    color: #000;
+    text-align: left;
+    vertical-align: bottom;
+}
+
+table td {
+    background-color: transparent;
+}
+
+.table-striped tr:nth-child(2n-1) td {
+    background-color: #f2f2f2;
+}
+
+.table-responsive {
+    overflow-x: auto;
+}
+
+input,
+select,
+textarea,
+button:not(.link) {
+    border: 1px solid #ccc;
+    box-shadow: inset 0 1px 3px #ddd;
+    box-sizing: border-box;
+    display: inline-block;
+    margin-top: 15px;
+    padding: 0.5em;
+    vertical-align: middle;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:not(.link) {
+  border-color: #cbcbcb;
+  margin-top: 15px;
+  outline: 0;
+}
+
+label {
+  display: inline-block;
+  margin-top: 15px;
+  width: 120px;
+}
+
+image {
+  height: auto;
+  width: 100%;
+}
+
+section {
+  overflow: hidden;
+  width: 100%;
 }
