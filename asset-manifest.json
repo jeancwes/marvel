@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/marvel/static/css/main.37216b62.chunk.css",
+    "main.js": "/marvel/static/js/main.1fc7228e.chunk.js",
+    "main.js.map": "/marvel/static/js/main.1fc7228e.chunk.js.map",
+    "runtime-main.js": "/marvel/static/js/runtime-main.c40111f3.js",
+    "runtime-main.js.map": "/marvel/static/js/runtime-main.c40111f3.js.map",
+    "static/js/2.7820ba32.chunk.js": "/marvel/static/js/2.7820ba32.chunk.js",
+    "static/js/2.7820ba32.chunk.js.map": "/marvel/static/js/2.7820ba32.chunk.js.map",
+    "static/js/3.3bd7dc67.chunk.js": "/marvel/static/js/3.3bd7dc67.chunk.js",
+    "static/js/3.3bd7dc67.chunk.js.map": "/marvel/static/js/3.3bd7dc67.chunk.js.map",
+    "index.html": "/marvel/index.html",
+    "static/css/main.37216b62.chunk.css.map": "/marvel/static/css/main.37216b62.chunk.css.map",
+    "static/js/2.7820ba32.chunk.js.LICENSE.txt": "/marvel/static/js/2.7820ba32.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.c40111f3.js",
+    "static/js/2.7820ba32.chunk.js",
+    "static/css/main.37216b62.chunk.css",
+    "static/js/main.1fc7228e.chunk.js"
+  ]
+}
