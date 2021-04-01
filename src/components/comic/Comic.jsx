@@ -1,7 +1,26 @@
 import React from 'react';
+import './Comic.css'
 
-export default function Comic() {
+import ComicTable from './ComicTable';
+
+export default function Comic({ comic }) {
   return (
-    <h2>Comic</h2>
+    <>
+      {(comic) && (
+        <section className="comic">
+          <header className="comic-header">
+            <h2>{comic.title}</h2>
+          </header>
+          <section className="comic-thumbnail">
+            <img className="comic-thumbnail-image" 
+              src={`${comic.images[0].path}.${comic.images[0].extension}`} 
+              alt="thumbnail" />
+          </section>
+          <section className="comic-info">
+            <ComicTable comic={comic} />
+          </section>
+        </section>
+      )};
+    </>
   );
 }

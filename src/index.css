@@ -117,3 +117,7 @@ section {
   overflow: hidden;
   width: 100%;
 }
+
+.float-right {
+  float: right;
+}

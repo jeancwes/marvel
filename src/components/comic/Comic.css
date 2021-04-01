@@ -1,0 +1,15 @@
+.comic {
+
+}
+
+.comic-thumbnail {
+    float: left;
+    height: 250px;
+    width: 200px;
+}
+
+.comic-thumbnail-image {
+    border-radius: 5px;
+    height: 250px;
+    width: 200px;
+}

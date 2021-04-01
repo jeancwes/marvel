@@ -1,26 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import ComicsTableRow from './ComicsTableRow';
+import React, { useState } from 'react';
+
+import Comic from '../../comic/Comic';
+import Dialog from '../../dialog/Dialog';
 
 export default function ComicsTable({ comics }) {
 
-  const [rows, setRows] = useState([]);
-
-  useEffect(() => {
-    if(!comics) {
-      return;
-    }
-
-    setRows(
-      comics.map((comic) => {
-        return (
-          <ComicsTableRow
-            comic={comic}
-            key={comic.id}
-          />
-        );
-      })
-    );
-  }, [comics])
+  const [opened, setOpened] = useState(false);
+  const [comic, setComic] = useState(undefined);
 
   return (
     <>
@@ -34,21 +20,47 @@ export default function ComicsTable({ comics }) {
               <tr role="row">
                 <th>Id</th>
                 <th>Título</th>
-                <th>Descrição</th>
                 <th>Páginas</th>
+                <th>Ações</th>
               </tr>
             </thead>
             <tbody>
-              {rows}
+              {(comics) && comics.map((comic) => {
+                return (
+                  <tr role="row" key={comic.id}>
+                    <td>{comic.id}</td>
+                    <td>{comic.title}</td>
+                    <td>{comic.pageCount}</td>
+                    <td>
+                      <button type="button" className="link" 
+                        onClick={() => {
+                          setComic(comic);
+                          setOpened(!opened);
+                        }}>
+                          Ver Quadrinho
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         )}
-      </div>
-      <div>
+
         {(comics && comics.length === 0) && (
-          <span>Nenhum Quadrinho</span>
+          <table className="table table-striped" role="table">
+            <caption role="caption">
+              Nenhum Quadrinho
+            </caption>
+          </table>
         )}
       </div>
+
+      <Dialog 
+        opened={opened} 
+        onClose={() => setOpened(!opened)}
+        content={<Comic comic={comic} />}
+      />
     </>
   );
 }
