@@ -1,11 +1,28 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import emailjs from 'emailjs-com'
 import environment from './environment/environment'
 
-export default function EmailJS() {
+export default function Email({ comics }) {
 
   const [ name, setName ] = useState('');
   const [ email, setEmail ] = useState('');
+  const [ message, setMessage ] = useState('');
+
+  useEffect(() => {
+    if (!comics || comics.length === 0) {
+      return;
+    }
+
+    setMessage(comics.reduce((acc, comic) => {
+        return acc += `
+          <h2>${comic.title}</h2> <br>
+          <img src="${comic.thumbnail.path}.${comic.thumbnail.extension}" 
+            width="200" height="250" alt="image" /> <br>
+          <p>${comic.description}</p> <br>
+        `;
+      }, '')
+    );
+  }, [comics]);
 
   const onSubmit = (e) => {
     e.preventDefault()
@@ -14,7 +31,20 @@ export default function EmailJS() {
       to_name: name,
       to_email: email,
       from_name: 'Marvel Assessment',
-      message: `Olá ${name}!`
+      message: `
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Marvel Assessment</title>
+        </head>
+            <body>
+              ${message}
+            </body>
+        </html>
+      `
     };
 
     emailjs.send(

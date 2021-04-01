@@ -13,7 +13,7 @@ export default function Comic({ comic }) {
           </header>
           <section className="comic-thumbnail">
             <img className="comic-thumbnail-image" 
-              src={`${comic.images[0].path}.${comic.images[0].extension}`} 
+              src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`} 
               alt="thumbnail" />
           </section>
           <section className="comic-info">

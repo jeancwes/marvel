@@ -1,12 +1,20 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Comic from '../../comic/Comic';
 import Dialog from '../../dialog/Dialog';
+import Email from '../../../Email';
 
 export default function ComicsTable({ comics }) {
 
   const [opened, setOpened] = useState(false);
   const [comic, setComic] = useState();
+  const [selectedComics, setSelectedComics] = useState([]);
+
+  useEffect(() => {
+    setSelectedComics(
+      comics.filter((comic) => comic.checked)
+    );
+  }, [comics]);
 
   return (
     <>
@@ -62,6 +70,8 @@ export default function ComicsTable({ comics }) {
           </table>
         )}
       </div>
+
+      <Email comics={comics} />
 
       <Dialog 
         opened={opened} 
