@@ -20,20 +20,21 @@ export default function Search({ onSearch }) {
         .catch((error) => {
           console.log(error);
         });
-    }, 500);
+    }, 800);
 
     return () => clearTimeout(timeoutId);
   }, [onSearch, titleStartsWith]);
 
   return (
     <>
-      <form>
+      <form className="search-form">
         <h2>Buscar Quadrinho</h2>
         <input
           type='text'
           className='search-input'
           onChange={(e) => setTitleStartsWith(e.currentTarget.value)}
           value={titleStartsWith}
+          placeholder="Digite para Buscar"
         />
       </form>
     </>

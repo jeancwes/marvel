@@ -12,9 +12,20 @@ export default function ComicsTable({ comics }) {
 
   useEffect(() => {
     setSelectedComics(
-      comics.filter((comic) => comic.checked)
+      comics.map((comic) => false)
     );
   }, [comics]);
+
+  const toggleSelectedComic = (selectedIndex) => {
+    setSelectedComics(
+      selectedComics.map((comic, index) => {
+        if (selectedIndex === index) {
+          return !comic;
+        }
+        return comic;
+      })
+    );
+  }
 
   return (
     <>
@@ -34,14 +45,14 @@ export default function ComicsTable({ comics }) {
               </tr>
             </thead>
             <tbody>
-              {(comics) && comics.map((comic) => {
+              {(comics) && comics.map((comic, index) => {
                 return (
                   <tr role="row" key={comic.id}>
                     <td>
-                      <input key={comic.id} type="checkbox" 
-                        onClick={() => comic.checked = !comic.checked} 
+                      <input type="checkbox" 
+                        onChange={() => toggleSelectedComic(index)} 
                         name={`comic-${comic.id}`} id={`comic-${comic.id}`}
-                        checked={comic.checked} value={comic.id} />
+                        checked={selectedComics[index]}/>
                     </td>
                     <td>{comic.id}</td>
                     <td>{comic.title}</td>
@@ -71,7 +82,10 @@ export default function ComicsTable({ comics }) {
         )}
       </div>
 
-      <Email comics={comics} />
+      <Email 
+        comics={comics} 
+        selectedComics={selectedComics} 
+      />
 
       <Dialog 
         opened={opened} 

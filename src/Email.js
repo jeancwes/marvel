@@ -2,19 +2,28 @@ import React, { useEffect, useState } from 'react';
 import emailjs from 'emailjs-com'
 import environment from './environment/environment'
 
-export default function Email({ comics }) {
+export default function Email({ comics, selectedComics }) {
 
-  const [ name, setName ] = useState('');
-  const [ email, setEmail ] = useState('');
-  const [ message, setMessage ] = useState('');
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+  const [valid, setValid] = useState(false);
 
   useEffect(() => {
-    if (!comics || comics.length === 0) {
-      return;
+    if (!name || !email || !selectedComics.some((sc) => sc === true)) {
+      return setValid(false);
     }
+    return setValid(true);
+  }, [email, name, selectedComics]);
 
-    setMessage(comics.reduce((acc, comic) => {
-        return acc += `
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    setMessage(comics.reduce((accumulator, comic, index) => {
+      if (selectedComics[index] === false) {
+        return accumulator;
+      }
+      return accumulator + `
           <h2>${comic.title}</h2> <br>
           <img src="${comic.thumbnail.path}.${comic.thumbnail.extension}" 
             width="200" height="250" alt="image" /> <br>
@@ -22,10 +31,6 @@ export default function Email({ comics }) {
         `;
       }, '')
     );
-  }, [comics]);
-
-  const onSubmit = (e) => {
-    e.preventDefault()
 
     var templateParams = {
       to_name: name,
@@ -60,15 +65,17 @@ export default function Email({ comics }) {
   }
 
   return (
-    <form onSubmit={(e) => onSubmit(e)}>
-      <h2>
-        Enviar Quadrinhos por Email
-      </h2>
-      <input type="text" placeholder="Informe seu Nome" 
-        onChange={(e) => setName(e.target.value)} />
-      <input type="email" placeholder="Informe seu Email" 
-        onChange={(e) => setEmail(e.target.value)} />
-      <button type="submit" disabled={!name || !email}>Enviar</button>
-    </form>
+    <>
+      <form className="email-form" onSubmit={(e) => onSubmit(e)}>
+        <h2>
+          Enviar Quadrinhos por Email
+        </h2>
+        <input type="text" placeholder="Informe seu Nome"
+          onChange={(e) => setName(e.target.value)} />
+        <input type="email" placeholder="Informe seu Email"
+          onChange={(e) => setEmail(e.target.value)} />
+        <button type="submit" disabled={!valid}>Enviar</button>
+      </form>
+    </>
   );
 }
