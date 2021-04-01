@@ -6,7 +6,7 @@ import Dialog from '../../dialog/Dialog';
 export default function ComicsTable({ comics }) {
 
   const [opened, setOpened] = useState(false);
-  const [comic, setComic] = useState(undefined);
+  const [comic, setComic] = useState();
 
   return (
     <>
@@ -18,6 +18,7 @@ export default function ComicsTable({ comics }) {
             </caption>
             <thead>
               <tr role="row">
+                <th></th>
                 <th>Id</th>
                 <th>Título</th>
                 <th>Páginas</th>
@@ -28,6 +29,12 @@ export default function ComicsTable({ comics }) {
               {(comics) && comics.map((comic) => {
                 return (
                   <tr role="row" key={comic.id}>
+                    <td>
+                      <input key={comic.id} type="checkbox" 
+                        onClick={() => comic.checked = !comic.checked} 
+                        name={`comic-${comic.id}`} id={`comic-${comic.id}`}
+                        checked={comic.checked} value={comic.id} />
+                    </td>
                     <td>{comic.id}</td>
                     <td>{comic.title}</td>
                     <td>{comic.pageCount}</td>

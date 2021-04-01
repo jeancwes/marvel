@@ -1,7 +1,7 @@
 import React from 'react';
 import './Comic.css'
 
-import ComicTable from './ComicTable';
+import ComicTable from './comic-table/ComicTable';
 
 export default function Comic({ comic }) {
   return (

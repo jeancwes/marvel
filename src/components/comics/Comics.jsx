@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import ComicsTable from './comics-table/ComicsTable';
 import Search from '../search/Search';
+import EmailJS from '../../EmailJS';
 
 export default function Comics() {
 
@@ -19,7 +20,7 @@ export default function Comics() {
         </section>
       </main>
       <footer className="comics-footer">
-        
+        <EmailJS></EmailJS>
       </footer>
     </>
   );
